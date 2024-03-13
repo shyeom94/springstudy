@@ -2,9 +2,6 @@ package com.gdu.prj01.anno03;
 
 import java.sql.Connection;
 
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
