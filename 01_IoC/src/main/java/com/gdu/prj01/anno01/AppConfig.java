@@ -20,6 +20,7 @@ public class AppConfig { // <bean> 을 만드는 Configuration
 //    return new Calculator();
 //  }
 
+  @Bean
   public Computer computer1() {
     Computer computer1 = new Computer();
     computer1.setModel("gram");
