@@ -3,13 +3,28 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean class="com.gdu.prj01.xml03.MyConnection" 
-        id="myConnection"
-        scope="singleton">
+  <bean class="com.gdu.prj01.xml03.MyConnection" id="myConnection"
+    scope="singleton">
     <property name="driver" value="oracle.jdbc.OracleDriver"></property>
-    <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+    <property name="url"
+      value="jdbc:oracle:thin:@localhost:1521:xe"></property>
     <property name="user" value="GD"></property>
     <property name="password" value="1111"></property>
   </bean>
 
+  <bean class="com.gdu.prj01.xml03.MyDao" id="myDao"
+    scope="singleton">
+    <property name="myConnection" ref="myConnection" />
+    <!-- ref 에서 사용하는 것은 bean 의 id 이다. -->
+  </bean>
+
+  <bean class="com.gdu.prj01.xml03.MyService" id="myService"
+    scope="singleton">
+    <property name="myDao" ref="myDao"></property>
+  </bean>
+
+  <bean class="com.gdu.prj01.xml03.MyController" id="myController"
+    scope="singleton">
+    <property name="myService" ref="myService" />
+  </bean>
 </beans>
