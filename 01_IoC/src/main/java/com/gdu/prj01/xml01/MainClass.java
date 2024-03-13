@@ -18,23 +18,24 @@ public class MainClass {
     calculator.mul(10, 3);
     calculator.div(10, 4);
 
-    // appCtx.xml 닫기
-    ctx.close();
+    // appCtx.xml 닫기 
+    ctx.close(); 
   }
 
-  public static void method2() {
+  public static void method2() { 
 
-    AbstractApplicationContext ctx = new GenericXmlApplicationContext("com/gdu/prj91/xml01/appCtx.xml");
+    AbstractApplicationContext ctx = new GenericXmlApplicationContext("com/gdu/prj91/xml01/appCtx.xml"); 
 
-    Computer computer1 = ctx.getBean("computer1", Computer.class);
+    Computer computer1 = ctx.getBean("computer1", Computer.class); 
 
-    System.out.println(computer1.getModel());
-    System.out.println(computer1.getPrice());
-    computer1.getCalculator().add(5, 2);
-    computer1.getCalculator().sub(5, 2);
-    computer1.getCalculator().mul(5, 2);
-    computer1.getCalculator().div(5, 2);
-    ctx.close();
+    System.out.println(computer1.getModel()); 
+    System.out.println(computer1.getPrice()); 
+    computer1.getCalculator().add(5, 2); 
+    computer1.getCalculator().sub(5, 2); 
+    computer1.getCalculator().mul(5, 2); 
+    computer1.getCalculator().div(5, 2); 
+    
+    ctx.close(); 
   }
 
   public static void method3() {
