@@ -69,6 +69,6 @@ public class MyController4 {
     return "blog/addResult";
   }
   
-  // 보낼 때 request, 받을 때 Model
+  // 보낼 때 request, 받을 때 Model -> Model 사용하자 !!! 
   
 }
