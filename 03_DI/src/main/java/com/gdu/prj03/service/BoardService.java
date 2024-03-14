@@ -8,5 +8,5 @@ public interface BoardService {
   
   List<BoardDto> getBoardList();
   BoardDto getBoardByNo(int boardNo);
-
+  
 }

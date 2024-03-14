@@ -7,13 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.gdu.prj03.service.BoardService;
 
+import lombok.RequiredArgsConstructor;
+
 //컴포넌트         @controller   @service    @Repository     -> Bean 이 3개
 //          view - controller -  service  -  dao 
+
+@RequiredArgsConstructor
 
 @Controller // Controller 에서 사용하는 @Component
 public class BoardController {
 
-  /******************************* DI ***************************************/
+  /********************************** DI *****************************************/
   /*
    * Dependency Injection
    * 1. 의존 주입
@@ -44,18 +48,29 @@ public class BoardController {
 //  }
   
   // 3. setter 주입 
+  //  1) 메소드의 매개변수를 생략할 수 있다.
+  //  2) @Autowired 를 생략할 수 없다.
+  //  3) 메소드명은 상관이 없다. 
+  
+//  private BoardService boardService; 
+//  
+//  @Autowired
+//  public void setBoardService(BoardService boardService) {
+//    this.boardService = boardService;
+//  }
 
+  /**********************************************************************************/
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  // ******************* 앞으로 사용할 한 가지 방식 ******************* 
+  // final 필드 + 생성자 주입(lombok 의 @RequiredArgsConstructor를 이용해서 매개변수의 null 체크를 수행함)
+
+  private final BoardService boardService; // final 은 곧바로 초기화를 해야 한다. 
+
+//  public BoardController(BoardService boardService) {
+//    super();
+//    this.boardService = boardService;
+//  } // -> @AllArgsConstructor
+
   @GetMapping("/board/list.do")
   public String list(Model model) {
     model.addAttribute("boardList", boardService.getBoardList());
