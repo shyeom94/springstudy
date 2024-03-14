@@ -17,20 +17,33 @@
 
   <%-- Mycontroller3 --%>
   <div>
-    <a href="${contextPath}/article/detail1.do?article_no=10">article 상세1</a>
-    <a href="${contextPath}/article/detail2.do">article 상세2</a>
-    <a href="${contextPath}/article/detail3.do?article_no=10">article 상세3</a>
+    <a href="${contextPath}/article/detail1.do?article_no=10">article
+      상세1</a> <a href="${contextPath}/article/detail2.do">article 상세2</a> <a
+      href="${contextPath}/article/detail3.do?article_no=10">article
+      상세3</a>
   </div>
-  
+
   <%-- Mycontroller4 --%>
   <div>
     <a href="${contextPath}/blog/list.do">블로그 목록</a>
   </div>
-  
+
   <%-- Mycontroller5 --%>
   <div>
-    <a href="${contextPath}/faq/add.do">faq 등록</a>
-  </div>  
-  
+    <a href="${contextPath}/faq/add.do">faq 등록</a> <a
+      href="${contextPath}/faq/modify.do">faq 수정</a>
+  </div>
+
+  <%-- Mycontroller6 --%>
+  <div>
+    <c:if test="${sessionScope.user == null}"> <!-- Session 에 저장된 user -->
+      <a href="${contextPath}/user/login1.do">로그인1</a>
+    </c:if>
+    <c:if test="${sessionScope.user != null}"> <!-- Session 에 저장된 user -->
+      <span>${sessionScope.user.userEmail}님 반갑습니다</span>
+      <a href="${contextPath}/user/logout1.do">로그아웃1</a>
+    </c:if>
+  </div>
+
 </body>
 </html>

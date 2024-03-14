@@ -23,7 +23,7 @@ public class MyController1 {
    * 3. 매개변수 
    *  1) 요청과 응답을 위한 각종 변수의 선언이 가능하다.   
    *  2) 주요 매개변수 
-   *    (1) HttpServletRequest request 
+   *    (1) HttpServletRequest request          .getSession 
    *    (2) HttpServletResponse response          // doGet(요청 받고,  응답 주고) 
    *    (3) HttpSession session 
    *    (4) 커맨드 객체 : 요청 파라미터를 받는 객체 
