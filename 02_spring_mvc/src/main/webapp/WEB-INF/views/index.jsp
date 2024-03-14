@@ -10,6 +10,9 @@
 </head>
 <body>
 
+  <%-- 정적 자원 확인 --%>
+  <img src="${contextPath}/resources/image/404.jpg" width="200px">
+
   <%-- Mycontroller2 --%>
   <div>
     <a href="${contextPath}/board/list.do">board 목록</a>
@@ -36,12 +39,14 @@
 
   <%-- Mycontroller6 --%>
   <div>
-    <c:if test="${sessionScope.user == null}"> <!-- Session 에 저장된 user -->
-      <a href="${contextPath}/user/login1.do">로그인1</a>
+    <c:if test="${sessionScope.user == null}"> <!-- sessionScope 꼭 붙이자 ! Session 에 저장된 user -->
+      <a href="${contextPath}/user/login1.do?redirectURL=/main.do">로그인1</a> 
+      <a href="${contextPath}/user/login2.do">로그인2</a> 
     </c:if>
     <c:if test="${sessionScope.user != null}"> <!-- Session 에 저장된 user -->
-      <span>${sessionScope.user.userEmail}님 반갑습니다</span>
+      <span><a href="${contextPath}/user/mypage.do">${sessionScope.user.userEmail}</a>님 반갑습니다</span>
       <a href="${contextPath}/user/logout1.do">로그아웃1</a>
+      <a href="${contextPath}/user/logout2.do">로그아웃2</a>
     </c:if>
   </div>
 

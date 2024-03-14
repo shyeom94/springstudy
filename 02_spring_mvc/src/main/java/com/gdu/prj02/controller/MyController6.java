@@ -4,10 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.gdu.prj02.dto.UserDto;
 
+@SessionAttributes(names="user")  //  Model 에 user 가 저장되면 session 에 같은 값을 저장한다.
 @Controller
 public class MyController6 {
 
@@ -25,7 +30,8 @@ public class MyController6 {
     
     // 메인 페이지로 이동 
     // return "index";
-    return "redirect:/main.do"; // 이 방법을 권장합니다. 
+    // return "redirect:/main.do"; // 이 방법을 권장합니다. 
+    return "redirect:" + request.getParameter("redirectURL"); // 로그인 이전 페이지로 돌아감 
   }
 
   @GetMapping("/user/logout1.do")
@@ -42,4 +48,50 @@ public class MyController6 {
     return "redirect:/main.do"; // 이 방법을 권장합니다. 
   }
   
+  @GetMapping("/user/login2.do")
+  public String login2(Model model) {
+
+    // model 에 저장할 객체
+    UserDto user = new UserDto(1, "min@naver,com");
+
+    // model 에 객체 저장하기 (@SessionAttributes 에 의해서 session 에도 저장된다.)
+    model.addAttribute("user", user); // Model 에 저장했지만, session 에도 함께 저장됨
+
+    // 메인 페이지로 이동
+    // return "index";
+    return "redirect:/main.do"; // 이 방법을 권장합니다.
+  }
+
+  @GetMapping("/user/logout2.do")
+  public String logout2(SessionStatus sessionStatus) {
+
+    // session attribute 삭제를 위해 세션 완료 처리 (이 작업은 끝났다는 뜻ㅎ)
+    sessionStatus.setComplete();
+
+    // 메인 페이지로 이동
+    // return "index";
+    return "redirect:/main.do"; // 이 방법을 권장합니다.
+  }
+
+  // @GetMapping("/user/mypage.do")
+  public String mypage1(HttpSession session, Model model) {
+
+    // session 에 저장된 user 정보
+    UserDto user = (UserDto) session.getAttribute("user");
+
+    // model 에 user 정보 저장
+    model.addAttribute("user", user);
+    
+    // user/mypage.jsp 로 forward 
+    return "user/mypage";
+
+  }
+
+  @GetMapping("/user/mypage.do")
+  public String mypage2(@SessionAttribute(name = "user") UserDto user) { 
+    // session attribute 중 user 를 UserDto user 에 저장하시오.
+    
+    // user/mypage.jsp 로 forward 
+    return "user/mypage";
+  }
 }

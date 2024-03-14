@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- Root Context: defines shared resources visible to all other web components -->
+
+<!-- 스프링 컨테이너 빈 생성을 이렇게 안한다.
+  <bean class="com.gdu.prj03.dao.BoardDaoImpl" 
+  id="boardDaoImpl" 
+  scope="singleton" />
+-->
+
+</beans>
