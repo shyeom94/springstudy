@@ -43,7 +43,7 @@ public class MyController3 {
    * 3. 커맨드 객체를 이용한 요청 파라미터 처리 
    *  1) 요청 파라미터를 필드로 가진 객체를 커맨드 객체라고 한다. 
    *  2) 요청 파리미터를 setter 를 이용하여 필드에 저장한다. 
-   *  3) 자동으로 Model 에 저장된다. 
+   *  3) 자동으로 Model 에 저장된다. ! ! ! ! ! 
    */
   
   @RequestMapping(value = "article/detail3.do", method = RequestMethod.GET)
