@@ -31,7 +31,8 @@
 
   <script>
   
-    const fnBoardList = ()=>{
+    
+  const fnBoardList = ()=>{
       $('#btn-list').on('click', (evt)=>{
         $.ajax({
           /* 요청 */

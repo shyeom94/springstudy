@@ -19,8 +19,8 @@ public class BoardController1 {
 
   private final BoardService boardService;
 
-  @ResponseBody // 반환값은 jsp 의 이름이 아니고 어떤 데이터이다. 비동기 작업에서 꼭 필요한 Annotation
-  // 뷰 리졸버가 간섭 개입하지 말 것 -> jsp 가 아니기 때문
+  @ResponseBody // 반환값은 jsp 의 이름이 아니고 어떤 데이터이다. 비동기 작업에서 꼭 필요한 Annotation 
+  // 뷰 리졸버가 간섭(개입)하지 말 것 -> jsp 가 아니기 때문
   @GetMapping(value = "/list.do", produces = "application/json") // produces : 응답 데이터 타입 (Content-Type)
   public List<BoardDto> list() { // jackson 라이브러리가 List<BoardDto> 를 JSON 데이터로 변환한다. 
     return boardService.getBoardList(); // 데이터다.
