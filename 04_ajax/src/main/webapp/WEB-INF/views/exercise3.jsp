@@ -14,12 +14,65 @@
 <body>
 
   <div>
-    <button type="button" id="btn-list">목록갱신</button>
+    <button type="button" onclick="fnBoardList()">목록갱신</button>
   </div>
 
   <hr>
 
   <div id="board-list"></div>
+  
+  <script>
+
+  const fnBoardList = ()=>{
+	  // 함수 선언, 함수 표현식 
+	  
+	  const options = {
+		// 객체 
+		method: 'GET',
+	  cache: 'no-cache'
+	  }
+	  
+	  // const myPromise = fetch('${contextPath}/ajax3/list.do', options);
+	  // myPromise.then() // -> 같다  fetch() 는 Promisem 를 부른다. 
+	  
+	  fetch('${contextPath}/ajax3/list.do', options)
+	     .then(response=>response.json()) // json 데이터를 가진 promise 가 반환된다 
+	     .then(resData=>{ // 항상 Promise 다음엔 .then 을 붙인다. jsonData == resData
+	    	 // console.log(resData);
+	     const boardList = document.getElementById('board-list');
+	     boardList.innerHTML = '';
+	     let result = '<div class="board-wrap">';
+	     resData.forEach(board=>{
+	    	 result += '<div class="board" data-board-no="' + board.boardNo + '"><div>' + board.boardNo + '</div><div>' + board.title + '</div><div>' + board.contents + '</div></div>';
+	     })
+	     result += '</div>';
+	     boardList.innerHTML = result;
+	     fnBoardDetail();
+	   })
+  }
+  
+  </script>
+  
+  <script>
+  
+  const fnBoardDetail = ()=>{
+	  
+	 const boardList = document.getElementsByClassName('board');  
+	 // console.log(typeof boardList); // 확인 object
+	 for (let i = 0; i < boardList.length; i++){
+		 boardList[i].addEventListener('click', (evt)=>{
+			 const boardNo = evt.currentTarget.dataset.boardNo;
+			 // alert(boardNo); 
+			 fetch('${contextPath}/ajax3/detail.do?boardNo=' + boardNo, {method: 'GET', cache: 'no-cache'})
+			 .then(response=>response.json())
+			 .then(resData=>{
+				 console.log(resData);
+				 })
+			 })
+		 }
+	 }
+	  
+  </script>
 
 </body>
 </html>
