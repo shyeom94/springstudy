@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />  
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +13,13 @@
 </head>
 <body>
 
-  <a href="${contextPath}/exercise1.do">연습가기1</a>
-  <a href="${contextPath}/exercise2.do">연습가기2</a>
-  <a href="${contextPath}/exercise3.do">연습가기3</a>
+  <div>
+    <button type="button" id="btn-list">목록갱신</button>
+  </div>
+
+  <hr>
+
+  <div id="board-list"></div>
 
 </body>
 </html>
