@@ -27,7 +27,7 @@ public class ContactDaoImpl implements ContactDao {
 
   @Override
   public int modifyContact(ContactDto contact) {
-    int updateCount = sqlSessionTemplate.delete(NS + "modifyContact", contact); 
+    int updateCount = sqlSessionTemplate.update(NS + "modifyContact", contact); 
     return updateCount; 
   }
 
@@ -39,12 +39,14 @@ public class ContactDaoImpl implements ContactDao {
 
   @Override
   public List<ContactDto> getContactList() {
-    return null;
+    List<ContactDto> contactList = sqlSessionTemplate.selectList(NS + "getContactList");
+    return contactList;
   }
 
   @Override
   public ContactDto getContactByNo(int contactNo) {
-    return null;
+    ContactDto contact = sqlSessionTemplate.selectOne(NS + "getContactByNo", contactNo);
+    return contact;
   }
 
 }

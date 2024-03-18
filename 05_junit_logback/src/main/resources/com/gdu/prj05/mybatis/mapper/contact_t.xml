@@ -39,7 +39,7 @@
 
 <!-- 쿼리문을 호출할 메서드의 이름을 id 로 지정한다. -->
   <insert id="registerContact"
-          parameterType="com.gdu.prj05.dto.ContactDto">
+          parameterType="ContactDto">
      INSERT INTO CONTACT_T (
         CONTACT_NO
       , NAME 
@@ -58,7 +58,7 @@
   </insert>
 
   <update id="modifyContact"
-          parameterType="com.gdu.prj05.dto.ContactDto">
+          parameterType="ContactDto">
      UPDATE CONTACT_T 
         SET NAME = #{name}
           , MOBILE = #{mobile}
@@ -73,5 +73,19 @@
       FROM CONTACT_T
      WHERE CONTACT_NO = #{contactNo}
   </delete>
-    
+  
+  <select id="getContactList"
+          resultType="ContactDto"> <!-- 목록 반환할 때 List 가 아닌 결과 타입 -->
+   SELECT CONTACT_NO, NAME, MOBILE, EMAIL, ADDRESS, CREATED_AT 
+     FROM CONTACT_T
+    ORDER BY CONTACT_NO DESC 
+  </select>
+  
+  <select id="getContactByNo"
+          resultType="ContactDto"> <!-- 목록 반환할 때 List 가 아닌 결과 타입 -->
+   SELECT CONTACT_NO, NAME, MOBILE, EMAIL, ADDRESS, CREATED_AT 
+     FROM CONTACT_T
+    WHERE CONTACT_NO = #{contactNo} 
+  </select>
+
 </mapper>
