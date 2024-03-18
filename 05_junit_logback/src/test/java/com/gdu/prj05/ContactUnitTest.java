@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor // 생성자 주입을 위해 
 public class ContactUnitTest {
-  
+    
   private final ContactDao contactDao;
   
   @Test

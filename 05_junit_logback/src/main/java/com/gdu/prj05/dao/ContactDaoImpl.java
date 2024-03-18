@@ -22,17 +22,19 @@ public class ContactDaoImpl implements ContactDao {
   @Override
   public int registerContact(ContactDto contact) {
     int insertCount = sqlSessionTemplate.insert(NS + "registeContact", contact); // mapper.id 
-    return insertCount;
+    return insertCount; 
   }
 
   @Override
   public int modifyContact(ContactDto contact) {
-    return 0;
+    int updateCount = sqlSessionTemplate.delete(NS + "modifyContact", contact); 
+    return updateCount; 
   }
 
   @Override
   public int removeContact(int contactNo) {
-    return 0;
+    int deletecount = sqlSessionTemplate.delete(NS + "removeContact", contactNo); 
+    return deletecount;
   }
 
   @Override

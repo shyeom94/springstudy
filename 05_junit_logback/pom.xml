@@ -110,11 +110,12 @@
     <!-- Logging -->
     <!-- Log4j, common-logging, Logback -->
     <!-- slf4j (interface) -->
-    <dependency>
+    
+<!--     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <version>${org.slf4j-version}</version>
-    </dependency>
+    </dependency> -->
 
     <!-- Logback -->  
     <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
