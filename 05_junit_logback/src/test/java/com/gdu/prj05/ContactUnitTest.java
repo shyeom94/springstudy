@@ -4,13 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gdu.prj05.dao.ContactDao;
 import com.gdu.prj05.dto.ContactDto;
 
-import lombok.RequiredArgsConstructor; 
+// import lombok.RequiredArgsConstructor; 
 
 /* 1. Junit4 를 이용한다. */ 
 @RunWith(SpringJUnit4ClassRunner.class) 
@@ -24,15 +25,21 @@ import lombok.RequiredArgsConstructor;
 
 @ContextConfiguration(locations="file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml") 
 
-@RequiredArgsConstructor // 생성자 주입을 위해 
+// @RequiredArgsConstructor // 생성자 주입을 위해 // -> 생성자 주입 불가
 public class ContactUnitTest {
     
-  private final ContactDao contactDao;
+  // private final ContactDao contactDao;
+  private ContactDao contactDao; // 필드 주입 or setter 주입 -> setter 주입
   
+  @Autowired
+  public void setContactDao(ContactDao contactDao) { 
+    this.contactDao = contactDao; 
+  } // setter 주입 
+
   @Test
   public void 등록테스트() {
     ContactDto contact = ContactDto.builder()
-                            .namel("테스트이름")
+                            .name("테스트이름")
                             .mobile("테스트모바일")
                             .email("테스트이메일")
                             .address("테스트주소")

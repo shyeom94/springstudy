@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ContactDto {
   private int contactNo;
-  private String namel;
+  private String name;
   private String mobile;
   private String email;
   private String address;
