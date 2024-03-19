@@ -67,22 +67,24 @@
       WHERE CONTACT_NO = #{contactNo}    
   </update>
   
+  <!-- 변수 하나만 전달하는 경우에는 parameterType 생략 가능 parameterType="com.gdu.prj05.dto.ContactDto"> -->
   <delete id="removeContact">
-       <!-- 변수 하나만 전달하는 경우에는 생략 가능 parameterType="com.gdu.prj05.dto.ContactDto"> -->
     DELETE 
       FROM CONTACT_T
      WHERE CONTACT_NO = #{contactNo}
   </delete>
   
+  <!-- 목록 반환할 때 List 가 아닌 결과 타입 -->
   <select id="getContactList"
-          resultType="ContactDto"> <!-- 목록 반환할 때 List 가 아닌 결과 타입 -->
+          resultType="ContactDto"> 
    SELECT CONTACT_NO, NAME, MOBILE, EMAIL, ADDRESS, CREATED_AT 
      FROM CONTACT_T
     ORDER BY CONTACT_NO DESC 
   </select>
   
+  <!-- 목록 반환할 때 List 가 아닌 결과 타입 -->
   <select id="getContactByNo"
-          resultType="ContactDto"> <!-- 목록 반환할 때 List 가 아닌 결과 타입 -->
+          resultType="ContactDto"> 
    SELECT CONTACT_NO, NAME, MOBILE, EMAIL, ADDRESS, CREATED_AT 
      FROM CONTACT_T
     WHERE CONTACT_NO = #{contactNo} 
