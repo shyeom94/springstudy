@@ -41,7 +41,14 @@
   </div>
 
   <script>
+  
+  const btnList = document.getElementById('btn-list');
 			
+  // 목록 
+  btnList.addEventListener('click', (evt)=>{
+      location.href = '${contextPath}/contact/list.do';
+  })
+  
   </script>
 
 </body>

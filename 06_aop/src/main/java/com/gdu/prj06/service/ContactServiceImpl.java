@@ -111,9 +111,9 @@ public class ContactServiceImpl implements ContactService {
     try {
       PrintWriter out = response.getWriter();
       out.println("<script>");
-      if(deleteCount == 1) {
+      if (deleteCount == 1) {
         out.println("alert('연락처가 삭제되었습니다.')");
-        out.println("location.href='" + request.getContextPath() + "/contact/list.do'");  // redirect 를 의미하는 코드
+        out.println("location.href='" + request.getContextPath() + "/contact/list.do'"); // redirect 를 의미하는 코드
       } else {
         out.println("alert('연락처가 삭제되지 않았습니다.')");
         out.println("history.back()");

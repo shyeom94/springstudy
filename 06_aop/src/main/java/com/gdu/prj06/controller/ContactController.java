@@ -20,56 +20,48 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value = "/contact")
 @RequiredArgsConstructor
 @Controller
-@Slf4j // lombok 
 public class ContactController {
 
   private final ContactService contactService;
 
-  // private static final Logger log = LoggerFactory.getLogger(ContactController.class); // lombok  작성 가능
+  // private static final Logger log =
+  // LoggerFactory.getLogger(ContactController.class); // lombok 작성 가능
 
   @GetMapping(value = "/list.do")
-  public String list(HttpServletRequest request, Model model) {
-    log.info(request.getMethod() + "/" + request.getRequestURI()); 
+  public String list(Model model) {
     model.addAttribute("contactList", contactService.getContactList());
     return "contact/list";
   }
 
   @GetMapping(value = "/detail.do")
-  public String detail(HttpServletRequest request, 
-                       @RequestParam(value = "contact-no", required = false, defaultValue = "0") int contactNo,
+  public String detail(@RequestParam(value = "contact-no", required = false, defaultValue = "0") int contactNo,
       Model model) {
-    log.info(request.getMethod() + "/" + request.getRequestURI()); 
     model.addAttribute("contact", contactService.getContactByNo(contactNo));
     return "contact/detail";
   }
 
   @GetMapping(value = "/write.do")
-  public String write(HttpServletRequest request) {
-    log.info(request.getMethod() + "/" + request.getRequestURI()); 
+  public String write() {
     return "contact/write";
   }
 
   @PostMapping(value = "/register.do")
   public void register(HttpServletRequest request, HttpServletResponse response) {
-    log.info(request.getMethod() + "/" + request.getRequestURI()); 
     contactService.registerContact(request, response);
   }
 
   @GetMapping(value = "/remove.do")
   public void remove1(HttpServletRequest request, HttpServletResponse response) {
-    log.info(request.getMethod() + "/" + request.getRequestURI()); 
     contactService.removeContact(request, response);
   }
 
   @PostMapping(value = "/remove.do")
   public void remove2(HttpServletRequest request, HttpServletResponse response) {
-    log.info(request.getMethod() + "/" + request.getRequestURI()); 
     contactService.removeContact(request, response);
   }
 
   @PostMapping(value = "/modify.do")
   public void modify(HttpServletRequest request, HttpServletResponse response) {
-    log.info(request.getMethod() + "/" + request.getRequestURI()); 
     contactService.modifyContact(request, response);
   }
 
