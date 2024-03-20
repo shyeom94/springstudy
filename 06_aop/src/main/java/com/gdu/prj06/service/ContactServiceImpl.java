@@ -1,4 +1,4 @@
-package com.gdu.prj05.service;
+package com.gdu.prj06.service;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 
-import com.gdu.prj05.dao.ContactDao;
-import com.gdu.prj05.dto.ContactDto;
+import com.gdu.prj06.dao.ContactDao;
+import com.gdu.prj06.dto.ContactDto;
 
 import lombok.RequiredArgsConstructor;
 

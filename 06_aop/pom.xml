@@ -5,8 +5,8 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.gdu</groupId>
-  <artifactId>prj05</artifactId>
-  <name>05_junit_logback</name>
+  <artifactId>prj06</artifactId>
+  <name>06_aop</name>
   <packaging>war</packaging>
   <version>1.0.0-BUILD-SNAPSHOT</version>
 

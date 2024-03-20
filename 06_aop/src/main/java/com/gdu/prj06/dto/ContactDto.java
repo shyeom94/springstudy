@@ -1,4 +1,4 @@
-package com.gdu.prj05.dto;
+package com.gdu.prj06.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,8 +1,8 @@
-package com.gdu.prj05.dao;
+package com.gdu.prj06.dao;
 
 import java.util.List;
 
-import com.gdu.prj05.dto.ContactDto;
+import com.gdu.prj06.dto.ContactDto;
 
 public interface ContactDao {
   int registerContact(ContactDto contact);

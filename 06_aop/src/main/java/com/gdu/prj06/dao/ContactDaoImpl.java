@@ -1,4 +1,4 @@
-package com.gdu.prj05.dao;
+package com.gdu.prj06.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
-import com.gdu.prj05.dto.ContactDto;
+import com.gdu.prj06.dto.ContactDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ public class ContactDaoImpl implements ContactDao {
 
   private final SqlSessionTemplate sqlSessionTemplate;
   
-  public final static String NS = "com.gdu.prj05.mybatis.mapper.contact_t."; 
+  public final static String NS = "com.gdu.prj06.mybatis.mapper.contact_t."; 
   
   @Override
   public int registerContact(ContactDto contact) {
