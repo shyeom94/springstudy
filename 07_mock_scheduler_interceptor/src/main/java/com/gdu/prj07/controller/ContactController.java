@@ -51,9 +51,8 @@ public class ContactController {
 
   @PostMapping(value = "/register.do")
   public void register(HttpServletRequest request
-                     , HttpServletResponse response
-                     , RedirectAttributes redirectAttributes) {
-    contactService.registerContact(request, response, redirectAttributes);
+                     , HttpServletResponse response) {
+    contactService.registerContact(request, response);
   }
 
   @GetMapping(value = "/remove.do")

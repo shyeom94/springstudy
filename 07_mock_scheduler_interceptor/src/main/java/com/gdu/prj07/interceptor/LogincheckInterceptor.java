@@ -15,19 +15,17 @@ public class LogincheckInterceptor implements HandlerInterceptor  {
     
     HttpSession session = request.getSession();
     
-    if(session.getAttribute("user" == null)) {
-      
+    if(session.getAttribute("user") == null) {
       response.setContentType("text/html; charset=UTF-8");
       PrintWriter out = response.getWriter();
       out.println("<script>");
       out.println("alert('로그인이 필요합니다.')");
       out.println("history.back()");
       out.println("</script>");
-      
       return false;
     }
     
-    
+    return true;
   }
   
 }

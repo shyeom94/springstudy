@@ -1,15 +1,15 @@
 package com.gdu.prj07;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
+//import org.junit.Before;
+//import org.junit.FixMethodOrder;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -26,7 +26,7 @@ import com.gdu.prj07.dto.ContactDto;
 import lombok.extern.slf4j.Slf4j;
                                                                                                                                                                                       
 /* 1. JUnit4 를 이용한다. */
-@RunWith(SpringJUnit4ClassRunner.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 
 /*
  * 2. ContactDaoImpl 클래스의 bean 생성 방법을 작성한다.
@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 /* 메소드의 이름 순으로 테스트를 수행한다. */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+//@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 // ContactService 타입의 ContactServiceImpl bean 이 등록된 파일 
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
@@ -45,7 +45,7 @@ import lombok.extern.slf4j.Slf4j;
 @WebAppConfiguration
 
 @Slf4j
-public class ContactMockTest {// txTest 
+public class ContactMockTest_JUnit4 {// txTest 
   
   @Autowired
   private WebApplicationContext webApplicationContext;
@@ -54,19 +54,19 @@ public class ContactMockTest {// txTest
   private MockMvc mockMvc;
   
   // MockMvc 객체 생성 (테스트 수행 이전에 생성한다.)
-  @Before
+  //@Before
   public void setUp() {
     mockMvc = MockMvcBuilders
                   .webAppContextSetup(webApplicationContext)
                 .build();
   } 
   
-  @Test
+  //@Test
   public void 테스트01_MockMvc생성확인() {
-    assertNotNull(mockMvc);
+    //assertNotNull(mockMvc);
   } 
 
-  @Test
+  //@Test
   public void 테스트02_삽입() throws Exception {
     
     MvcResult mvcResult = mockMvc
@@ -78,8 +78,25 @@ public class ContactMockTest {// txTest
                                   .param("address", "테스트주소"))
                             .andReturn();
 
+    // RedirectAttributes 에 flash attribute 를 등록하고 redirect 한 경우
     log.info(mvcResult.getFlashMap().toString()); 
-
+    
+    // HttpServletResponse 를 이용해 직접 redirect 코드를 작성한 경우
+    log.info(mvcResult.getResponse().getContentAsString());
+  
+  }
+  
+  //@Test
+  public void 테스트03_상세조회() throws Exception {
+    
+    MvcResult mvcResult = mockMvc
+                             .perform(MockMvcRequestBuilders
+                                         .get("/context/detail.do")
+                                         .param("contact-no", "1"))
+                             .andReturn();
+    
+    log.info(mvcResult.getModelAndView().getModelMap().toString());
+    
   }
   
   /*

@@ -21,7 +21,7 @@ public class ContactServiceImpl implements ContactService {
   private final ContactDao contactDao;
   
   @Override
-  public void registerContact(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
+  public void registerContact(HttpServletRequest request, HttpServletResponse response) {
     
     // 등록(성공->목록보기, 실패->뒤로가기)
     
@@ -35,7 +35,6 @@ public class ContactServiceImpl implements ContactService {
     
     // 등록
     int insertCount = contactDao.registerContact(contact);
-    redirectAttributes.addFlashAttribute("insertCount", insertCount);
     
     // 등록 결과에 따른 응답
     response.setContentType("text/html; charset=UTF-8");
