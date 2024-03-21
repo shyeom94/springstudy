@@ -1,4 +1,4 @@
-package com.gdu.prj06.controller;
+package com.gdu.prj07.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.gdu.prj06.service.ContactService;
+import com.gdu.prj07.service.ContactService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,8 +50,10 @@ public class ContactController {
   }
 
   @PostMapping(value = "/register.do")
-  public void register(HttpServletRequest request, HttpServletResponse response) {
-    contactService.registerContact(request, response);
+  public void register(HttpServletRequest request
+                     , HttpServletResponse response
+                     , RedirectAttributes redirectAttributes) {
+    contactService.registerContact(request, response, redirectAttributes);
   }
 
   @GetMapping(value = "/remove.do")

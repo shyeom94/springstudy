@@ -1,4 +1,4 @@
-package com.gdu.prj06.aspect;
+package com.gdu.prj07.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MyAroundAspect {
     
   // PointCut : 언제 동작하는가?
-  @Pointcut("execution (* com.gdu.prj06.controller.*Controller.*(..))") // 표현식. 언제 동작할 것인지를 결정하는 
+  @Pointcut("execution (* com.gdu.prj07.controller.*Controller.*(..))") // 표현식. 언제 동작할 것인지를 결정하는 
   public void setPointCut() {} // 본문 없음. 할 일은 Advice 에 적는다.
 
   /*
