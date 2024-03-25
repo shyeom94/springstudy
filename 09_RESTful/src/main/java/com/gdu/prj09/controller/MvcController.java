@@ -1,16 +1,16 @@
-package com.gdu.prj08.controller;
+package com.gdu.prj09.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.gdu.prj08.utils.MyFileUtils;
+import com.gdu.prj09.utils.MyPageUtils;
 
 @Controller
 public class MvcController {
 
   @Autowired
-  private MyFileUtils myFileUtils;
+  private MyPageUtils myFileUtils;
   
   @GetMapping(value={"/", "/main.do"})
   public String welcome() {

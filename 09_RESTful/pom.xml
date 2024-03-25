@@ -5,8 +5,8 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.gdu</groupId>
-  <artifactId>prj08</artifactId>
-  <name>08_file</name>
+  <artifactId>prj09</artifactId>
+  <name>09_RESTful</name>
   <packaging>war</packaging>
   <version>1.0.0-BUILD-SNAPSHOT</version>
 
