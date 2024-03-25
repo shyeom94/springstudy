@@ -24,8 +24,29 @@ public class MyPageUtils {
     begin = (page - 1) * display + 1;
     end = begin + display - 1;
 
-    totalPage = (int) Math.ceil((double) total / display); // ceil 
+    totalPage = (int) Math.ceil((double) total / display); // ceil : 올림 
     beginPage = ((page - 1) / pagePerBlock) * pagePerBlock + 1;
-    endPage = Math.min(totalPage, beginPage + pagePerBlock + 1);
+    endPage = Math.min(totalPage, beginPage + pagePerBlock - 1);
+    
+  }
+  
+  public String getAsyncPaging() {
+    
+    StringBuilder builder = new StringBuilder();
+    
+    // < 
+        
+    
+    
+    // 1 2 3 4 5 6 7 8 9 10
+    
+    
+    
+    // >
+    
+ 
+    
+    return builder.toString();
+
   }
 }
