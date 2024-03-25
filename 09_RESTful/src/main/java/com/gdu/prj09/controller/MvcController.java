@@ -10,13 +10,13 @@ import com.gdu.prj09.utils.MyPageUtils;
 public class MvcController {
 
   @Autowired
-  private MyPageUtils myFileUtils;
+  private MyPageUtils myPageUtils;
   
-  @GetMapping(value={"/", "/main.do"})
-  public String welcome() {
-  System.out.println(myFileUtils.getUploadPath());
-  System.out.println(myFileUtils.getFilesystemName("aaa.ccc.ddd.png"));
-    return "index";
-  }
+//  @GetMapping(value={"/", "/main.do"})
+//  public String welcome() {
+//  System.out.println(myPageUtils.getUploadPath());
+//  System.out.println(myPageUtils.getFilesystemName("aaa.ccc.ddd.png"));
+//    return "index";
+//  }
   
 }

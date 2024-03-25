@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class AddressDto {
+  private int addressNo;
   private String zonecode;
-  private String roadAddress;
-  private String jibunAddres;
+  private String address;
   private String detailAddress;
+  private String extraAddres;
   private int memberNo;
 }

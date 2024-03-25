@@ -44,10 +44,10 @@
     <constructor-arg ref="sqlSessionFactoryBean"/>
   </bean>
   
-  <bean class="com.gdu.prj08.dao.FileDaoImpl"
+<!--   <bean class="com.gdu.prj08.dao.FileDaoImpl"
         id="fileDao"
         scope="singleton">
     <constructor-arg ref="sqlSessionTemplate"/>
-  </bean>  
+  </bean>   -->
   
 </beans>

@@ -8,7 +8,7 @@ import com.gdu.prj09.dto.MemberDto;
 public interface MemberDao {
   int insertMember(MemberDto member);
 
-  int UpdateMember(MemberDto member);
+  int updateMember(MemberDto member);
 
   int deleteMember(int memberNo);
 
