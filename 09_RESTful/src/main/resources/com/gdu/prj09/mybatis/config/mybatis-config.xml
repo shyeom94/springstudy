@@ -7,15 +7,13 @@
 
   <!-- settings -->
   <settings>
-    <setting name="mapUnderscoreToCamelCase" value="true" />
+    <setting name="mapUnderscoreToCamelCase" value="true"/>
   </settings>
-
+  
   <!-- typeAliases -->
   <typeAliases>
-    <typeAlias alias="AddressDto"
-      type="com.gdu.prj09.dto.AddressDto" />
-    <typeAlias alias="MemberDto"
-      type="com.gdu.prj09.dto.MemberDto" />
+    <typeAlias alias="MemberDto"  type="com.gdu.prj09.dto.MemberDto"/>
+    <typeAlias alias="AddressDto" type="com.gdu.prj09.dto.AddressDto"/>
   </typeAliases>
-
+  
 </configuration>

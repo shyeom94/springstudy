@@ -17,10 +17,10 @@ public interface MemberService {
   ResponseEntity<Map<String, Object>> getMembers(int page, int display);
 
   // 상세
-  ResponseEntity<MemberDto> getMemberByNo();
+  ResponseEntity<MemberDto> getMemberByNo(int memberNo);
 
   // 삽입
-  ResponseEntity<Map<String, Object>> registerMember(MemberDto member, HttpServletResponse response);// jackson Library
+  ResponseEntity<Map<String, Object>> registerMember(Map<String, Object> map, HttpServletResponse response);// jackson Library
 
   // 수정
   ResponseEntity<Map<String, Object>> modifyMember(MemberDto member);
