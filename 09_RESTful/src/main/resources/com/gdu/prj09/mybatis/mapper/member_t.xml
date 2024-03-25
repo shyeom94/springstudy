@@ -5,22 +5,19 @@
 
 <mapper namespace="com.gdu.prj09.mybatis.mapper.member_t">
 
-  <resultMap type="" id=""></resultMap>
-
   <insert id="insertMember"
           parameterType="MemberDto">
     <selectKey keyProperty="memberNo" order="BEFORE" resultType="int">
       SELECT MEMBER_SEQ.NEXTVAL
         FROM DUAL
-    </selectKey>             
+    </selectKey>
     INSERT INTO MEMBER_T (
         MEMBER_NO
       , EMAIL
       , NAME
       , GENDER
     ) VALUES (
-        MEMBER_SEQ.NEXTVAL
-      , #{memberNo}
+        #{memberNo}
       , #{email}
       , #{name}
       , #{gender}
@@ -29,22 +26,21 @@
   
   <insert id="insertAddress"
           parameterType="AddressDto">
-     INSERT INTO ADDRESS_T (
-      ADDRESS_NO
-    , ZONECODE
-    , ADDRESS
-    , DETAIL_ADDRESS
-    , EXTRA_DDRESS
-    , MEMBER_NO
+    INSERT INTO ADDRESS_T (
+        ADDRESS_NO
+      , ZONECODE
+      , ADDRESS
+      , DETAIL_ADDRESS
+      , EXTRA_ADDRESS
+      , MEMBER_NO
     ) VALUES (
-      ADDRESS_SEQ.NEXTVAL
-    , #{zonecode}
-    , #{address}
-    , #{detailAddress}
-    , #{extraAddress}
-    , #{member.memberNo}
+        ADDRESS_SEQ.NEXTVAL
+      , #{zonecode}
+      , #{address}
+      , #{detailAddress}
+      , #{extraAddress}
+      , #{member.memberNo}
     )
-  
   </insert>
   
 </mapper>

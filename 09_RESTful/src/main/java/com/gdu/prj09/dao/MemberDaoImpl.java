@@ -15,7 +15,7 @@ public class MemberDaoImpl implements MemberDao {
 
   private final SqlSessionTemplate sqlSessionTemplate;
   
-  public final static String NS = "com.gdu.prj09.mybatis.mapper.member_t";
+  public final static String NS = "com.gdu.prj09.mybatis.mapper.member_t.";
 
   @Override
   public int insertMember(MemberDto member){
