@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class MemberDto {
-  private int memberNo; // 
-  private String email; 
-  private String name; 
-  private String gender; 
+  private int memberNo;
+  private String email;
+  private String name;
+  private String gender;
 }
