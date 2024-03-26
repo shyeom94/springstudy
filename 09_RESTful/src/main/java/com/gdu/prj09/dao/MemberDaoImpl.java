@@ -10,7 +10,7 @@ import com.gdu.prj09.dto.MemberDto;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor // root-context 와 연결
+@RequiredArgsConstructor
 public class MemberDaoImpl implements MemberDao {
 
   private final SqlSessionTemplate sqlSessionTemplate;
@@ -57,20 +57,17 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public MemberDto getMemberByNo(int memberNo) {
-    // TODO Auto-generated method stub
     return sqlSessionTemplate.selectOne(NS + "getMemberByNo", memberNo);
   }
-  
+
   @Override
   public int getTotalAddressCountByNo(int memberNo) {
-    // TODO Auto-generated method stub
     return sqlSessionTemplate.selectOne(NS + "getTotalAddressCountByNo", memberNo);
   }
   
   @Override
   public List<AddressDto> getAddressListByNo(Map<String, Object> map) {
-    // TODO Auto-generated method stub
     return sqlSessionTemplate.selectList(NS + "getAddressListByNo", map);
   }
-
+  
 }
