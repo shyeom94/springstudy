@@ -11,7 +11,9 @@ public interface MemberDao {
 
   int insertAddress(AddressDto address);
 
-  int updateMember(MemberDto member);
+  int updateMember(Map<String, Object> map);
+
+  int updateAddress(Map<String, Object> map);
 
   int deleteMember(int memberNo);
 

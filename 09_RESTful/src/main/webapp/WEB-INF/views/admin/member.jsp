@@ -22,17 +22,17 @@
       <input type="text" id="name">
     </div>
     <div>
-      <label for="none">선택안함</label>
       <input type="radio" name="gender" id="none" value="none" checked>
-      <label for="man">남자</label>
+      <label for="none">선택안함</label>
       <input type="radio" name="gender" id="man" value="man">
-      <label for="woman">여자</label>
+      <label for="man">남자</label>
       <input type="radio" name="gender" id="woman" value="woman">
+      <label for="woman">여자</label>
     </div>
     <div>
-      <input type="text" id="zonecode" placeholder="우편번호">
+      <input type="text" id="zonecode" onclick="execDaumPostcode()" placeholder="우편번호" readonly>
       <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-      <input type="text" id="address" placeholder="주소"><br>
+      <input type="text" id="address" placeholder="주소" readonly><br>
       <input type="text" id="detailAddress" placeholder="상세주소">
       <input type="text" id="extraAddress" placeholder="참고항목">
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -115,51 +115,41 @@
     
   </div>
   
-  <script src="${contextPath}/resources/js/member.js"></script>
+  <script src="${contextPath}/resources/js/member.js?dt=<%=System.currentTimeMillis()%>"></script>
   <script>
   
 // jQuery 객체 선언
-var btnDetail = $('.btn-detail');
+
   
 // 함수 표현식 (함수 만들기)
-const getMemberByNo = (evt)=>{
-  $.ajax({
-    type: 'GET',
-    url: getContextPath() + '/members/' + evt.target.dataset.memberNo,
-    dataType: 'json'
-  }).done(resData=>{  /* resData = {
-                           "addressList": [
-                             {
-                               "addressNo": 1,
-                               "zonecode": "12345",
-                               "address": "서울시 구로구 디지털로",
-                               "detailAddress": "카카오",
-                               "extraAddress": "(가산동)"
-                             },
-                             ...
-                           ],
-                           "member": {
-                             "memberNo": 1,
-                             "email": "email@email.com",
-                             "name": "gildong",
-                             "gender": "man"
-                           }
-                         }
-                      */
-    email.val(resData.member.email);
-    mName.val(resData.member.name);
-    $(':radio[value=' + resData.member.gender + ']').prop('checked', true);
-    zonecode.val(resData.addressList[0].zonecode);
-    address.val(resData.addressList[0].address);
-    detailAddress.val(resData.addressList[0].detailAddress);
-    extraAddress.val(resData.addressList[0].extraAddress);
-  }).fail(jqXHR=>{
-    alert(jqXHR.statusText + '(' + jqXHR.status + ')');
-  })
+const fnModifyMember = ()=>{
+	$.ajax({
+		type: 'PUT',
+		url: fnGetContextPath() + '/members',
+		contentType: 'application/json',
+		data: JSON.stringify({
+			'memberNo' : jqMemberNo.val(),
+			'name' : jqName.val(),
+			'gender' : $(':radio:checked').val(),
+			'zonecode' : jqZonecode.val(),
+			'address' : jqAddress.val(),
+			'detailAddress' : jqDetailAddress.val(),
+			'extraAddress' : jqExtraAddress.val()   
+		}),	
+		dataType: 'json',
+		success: (resData)=>{ // resData = {"updateCount":2}
+			  if(resData.updateCount === 2){
+				  alert('회원정보가 수정되었습니다.');
+				  fnGetMemberList();
+			  } else {
+				  alert('회원정보가 수정되지 않았습니다.');
+			  } 
+		}
+	})
 }
 
 // 함수 호출 및 이벤트
-$(document).on('click', '.btn-detail', (evt)=>{ getMemberByNo(evt); })
+
 
   </script>
 
