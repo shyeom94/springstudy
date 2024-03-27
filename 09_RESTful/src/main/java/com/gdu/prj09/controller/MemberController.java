@@ -75,10 +75,14 @@ public class MemberController {
     return memberService.modifyMember(map);
   }
   
-  @DeleteMapping(value="/member", produces="application/json")
+  @DeleteMapping(value="/member/{memberNo}", produces="application/json")
   public ResponseEntity<Map<String, Object>> removeMember(@PathVariable(value="memberNo", required=false) Optional<String> opt){
     int memberNo = Integer.parseInt(opt.orElse("0"));
     return memberService.removeMember(memberNo);
-  }  
-
+  }
+  
+  @DeleteMapping(value="/member/{memberNoList}", produces="application/json")
+  public ResponseEntity<Map<String, Object>> removeMembers(@PathVariable(value="memberNoList", required=false) Optional<String> opt){
+    return memberService.removeMembers(opt.orElse("0"));
+  }
 }

@@ -23,9 +23,9 @@ public interface MemberService {
   ResponseEntity<Map<String, Object>> removeMember(int memberNo);
 
   ResponseEntity<Map<String, Object>> removeMembers(String memberNoList);
-  
+
   // HttpServletRequest
   // @RequestParam ---------- @PathVariable
   // MyPageUtils
-  
+
 }

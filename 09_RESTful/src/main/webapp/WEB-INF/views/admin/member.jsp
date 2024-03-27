@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,16 +16,27 @@
     <h1>회원관리</h1>
     <input type="hidden" id="member-no">
     <div>
-      <label for="email">이메일</label> <input type="text" id="email">
+      <label for="email">이메일</label>
+      <input type="text" id="email">
     </div>
     <div>
-      <label for="name">이름</label> <input type="text" id="name">
+      <label for="name">이름</label>
+      <input type="text" id="name">
     </div>
     <div>
-      <input type="radio" name="gender" id="none" value="none" checked> <label for="none">선택안함</label> <input type="radio" name="gender" id="man" value="man"> <label for="man">남자</label> <input type="radio" name="gender" id="woman" value="woman"> <label for="woman">여자</label>
+      <input type="radio" name="gender" id="none" value="none" checked>
+      <label for="none">선택안함</label>
+      <input type="radio" name="gender" id="man" value="man">
+      <label for="man">남자</label>
+      <input type="radio" name="gender" id="woman" value="woman">
+      <label for="woman">여자</label>
     </div>
     <div>
-      <input type="text" id="zonecode" onclick="execDaumPostcode()" placeholder="우편번호" readonly> <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br> <input type="text" id="address" placeholder="주소" readonly><br> <input type="text" id="detailAddress" placeholder="상세주소"> <input type="text" id="extraAddress" placeholder="참고항목">
+      <input type="text" id="zonecode" onclick="execDaumPostcode()" placeholder="우편번호" readonly>
+      <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+      <input type="text" id="address" placeholder="주소" readonly><br>
+      <input type="text" id="detailAddress" placeholder="상세주소">
+      <input type="text" id="extraAddress" placeholder="참고항목">
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <script>
         function execDaumPostcode() {
@@ -74,17 +87,20 @@
       <button id="btn-init">초기화</button>
       <button id="btn-register">등록</button>
       <button id="btn-modify">수정</button>
-      <button id="btn-remove">삭제</button>
+      <button id="btn-remove">삭제</button>      
     </div>
-
+    
     <hr>
-
+    
     <div>
       <div id="total"></div>
       <div>
-        <select id="display"><option>20</option>
+        <button type="button" id="btn-select-remove">선택삭제</button>
+        <select id="display">
+          <option>20</option>
           <option>50</option>
-          <option>100</option></select>
+          <option>100</option>
+        </select>
       </div>
       <table border="1">
         <thead>
@@ -103,40 +119,20 @@
           </tr>
         </tfoot>
       </table>
-      <button type="button" id="btn-select-remove">선택삭제</button>
     </div>
-
+    
   </div>
-
+  
   <script src="${contextPath}/resources/js/member.js?dt=<%=System.currentTimeMillis()%>"></script>
   <script>
   
 // jQuery 객체 선언
 
 // 함수 표현식 (함수 만들기)
-const fnRemoveMember = ()=>{
-	if(!confirm('삭제할까요?')){
-		return;
-	}
-	$.ajax({
-		type: 'DELETE',
-		url: fnGetContextPath() + '/member/' + jqMemberNo.val(),
-		dataType: 'json'
-	}).done(resData=>{ // {"deleteCount":1}
-		 if(resData.deleteCount === 1) {
-			 alert('회원 정보가 수정되었습니다.');
-			 fnInit();
-			 fnGetMemberList();
-		 } else {
-			 alert('회원 정보가 삭제되지 않았습니다.');
-		 }
-	}).fail(jqXHR=>{
-		alert(jqXHR.statusText + '(' + jqXHR.status + ')');
-	}) 
-}
+
 
 // 함수 호출 및 이벤트
-jqBtnRemove.on('click', fnRemoveMember);
+
 
   </script>
 
