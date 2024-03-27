@@ -75,6 +75,10 @@
     WHERE MEMBER_NO = #{memberNo}
   </update>
   
+  <delete id="deleteMember">
+    DELETE MEMBER_T
+  </delete>
+  
   <select id="getTotalMemberCount"
           resultType="int">
     SELECT COUNT(*)

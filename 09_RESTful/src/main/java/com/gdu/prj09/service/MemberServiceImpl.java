@@ -44,24 +44,24 @@ public class MemberServiceImpl implements MemberService {
 
   @Override
   public ResponseEntity<Map<String, Object>> getMemberByNo(int memberNo) {
-
+    
     int total = memberDao.getTotalAddressCountByNo(memberNo);
     int page = 1;
     int display = 20;
     
     myPageUtils.setPaging(total, display, page);
-    // --- Address 목록 가져올 때 필요한 작업들 
     
-    Map<String , Object> params = Map.of("memberNo", memberNo
-                                          , "begin", myPageUtils.getBegin()
-                                            , "end", myPageUtils.getEnd());
+    Map<String, Object> params = Map.of("memberNo", memberNo
+                                      , "begin", myPageUtils.getBegin()
+                                      , "end", myPageUtils.getEnd());
     
     List<AddressDto> addressList = memberDao.getAddressListByNo(params);
     MemberDto member = memberDao.getMemberByNo(memberNo);
     
     return new ResponseEntity<Map<String,Object>>(Map.of("addressList", addressList
-                                                        ,"member", member)
-                                                        ,HttpStatus.OK);
+                                                       , "member", member)
+                                                , HttpStatus.OK);
+    
   }
 
   @Override
@@ -116,18 +116,33 @@ public class MemberServiceImpl implements MemberService {
 
   @Override
   public ResponseEntity<Map<String, Object>> modifyMember(Map<String, Object> map) {
-
-    int updateCount = memberDao.updateMember(map);
-    updateCount += memberDao.updateAddress(map);
     
-    return new ResponseEntity<Map<String,Object>> (Map.of("updateCount", updateCount)
-                                                 , HttpStatus.OK );
+    int updateMemberCount = memberDao.updateMember(map);
+    int updateAddressCount = memberDao.updateAddress(map);
+    
+    if(updateAddressCount == 0) {
+      AddressDto address = AddressDto.builder()
+                              .zonecode((String)map.get("zonecode"))
+                              .address((String)map.get("address"))
+                              .detailAddress((String)map.get("detailAddress"))
+                              .extraAddress((String)map.get("extraAddress"))
+                              .member(MemberDto.builder()
+                                        .memberNo(Integer.parseInt((String)map.get("memberNo")))
+                                      .build())
+                            .build();
+      updateAddressCount = memberDao.insertAddress(address);
+    }
+    
+    return new ResponseEntity<Map<String,Object>>(Map.of("updateCount", updateMemberCount + updateAddressCount)
+                                                , HttpStatus.OK);
+    
   }
 
   @Override
   public ResponseEntity<Map<String, Object>> removeMember(int memberNo) {
     // TODO Auto-generated method stub
-    return null;
+    return new ResponseEntity<Map<String,Object>>(Map.of("deleteCount", memberDao.deleteMember(memberNo))
+                                                , HttpStatus.OK);
   }
 
   @Override

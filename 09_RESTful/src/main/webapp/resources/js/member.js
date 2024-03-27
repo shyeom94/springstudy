@@ -18,6 +18,7 @@ var jqMembers = $('#members');
 var jqTotal = $('#total');
 var jqPaging = $('#paging');
 var jqDisplay = $('#display');
+var jqMemberNo = $('#member-no');
 var jqEmail = $('#email');
 var jqName = $('#name');
 var jqZonecode = $('#zonecode');
@@ -174,6 +175,7 @@ const fnGetMemberByNo = (evt)=>{
                       */
     fnInit();
     if(resData.member !== null){
+      jqMemberNo.val(resData.member.memberNo);
       jqEmail.val(resData.member.email).prop('disabled', true);
       jqName.val(resData.member.name);
       $(':radio[value=' + resData.member.gender + ']').prop('checked', true);
@@ -192,6 +194,36 @@ const fnGetMemberByNo = (evt)=>{
   })
 }
 
+const fnModifyMember = ()=>{
+  $.ajax({
+    type: 'PUT',
+    url: fnGetContextPath() + '/members',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      'memberNo': jqMemberNo.val(),
+      'name': jqName.val(),
+      'gender': $(':radio:checked').val(),
+      'zonecode': jqZonecode.val(),
+      'address': jqAddress.val(),
+      'detailAddress': jqDetailAddress.val(),
+      'extraAddress': jqExtraAddress.val()
+    }),
+    dataType: 'json',
+    success: (resData)=>{  // resData = {"updateCount": 2}
+      console.log(resData);
+      if(resData.updateCount === 2){
+        alert('회원 정보가 수정되었습니다.');
+        fnGetMemberList();
+      } else {
+        alert('회원 정보가 수정되지 않았습니다.');
+      }
+    },
+    error: (jqXHR)=>{
+      alert(jqXHR.statusText + '(' + jqXHR.status + ')');
+    }
+  })
+}
+
 // 함수 호출 및 이벤트
 fnInit();
 jqBtnInit.on('click', fnInit);
@@ -199,3 +231,4 @@ jqBtnRegister.on('click', fnRegisterMember);
 fnGetMemberList();
 jqDisplay.on('change', fnChangeDisplay);
 $(document).on('click', '.btn-detail', (evt)=>{ fnGetMemberByNo(evt); });
+jqBtnModify.on('click', fnModifyMember);
